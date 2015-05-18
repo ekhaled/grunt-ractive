@@ -33,15 +33,21 @@ module.exports = function (grunt) {
       }).map(function (filepath) {
         return createComponent(filepath, options.type);
       }).map(function (o) {
-        grunt.file.write(path.join(f.dest, o.name), o.component);
+        var destPath = path.join(f.dest, o.name);
+        grunt.file.write(destPath, o.component);
+        grunt.log.writeln('File ' + destPath + ' created.');
       });
 
     });
 
     function createComponent (filepath, type) {
+      var builder = builders[type];
+      if(typeof builder == 'undefined' || !builder){
+        grunt.fatal('Type \''+type+'\' is not recognised, should be either of \'amd\', \'cjs\' or \'es6\'.', 2);
+      }
       return {
         name: makeComponentName(filepath),
-        component: builders.amd(rcu.parse(grunt.file.read(filepath)))
+        component: builder(rcu.parse(grunt.file.read(filepath)))
       }
     }
 
