@@ -27,6 +27,11 @@
   "scripts": {
     "test": "grunt test"
   },
+  "dependencies":{
+    "rcu-builders": "^0.2.0",
+    "rcu": "^0.4.2",
+    "ractive": "^0.7.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.5",
     "grunt-contrib-clean": "~0.6.0",
