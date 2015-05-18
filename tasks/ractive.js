@@ -51,13 +51,13 @@ module.exports = function (grunt) {
 
     function createComponent (filepath, type) {
       var builder = builders[type];
-      if(typeof builder == 'undefined' || !builder){
+      if(typeof builder === 'undefined' || !builder){
         grunt.fatal('Type \''+type+'\' is not recognised, should be either of \'amd\', \'cjs\' or \'es6\'.', 2);
       }
       return {
         name: makeComponentName(filepath),
         component: builder(rcu.parse(grunt.file.read(filepath)))
-      }
+      };
     }
 
     function makeComponentName (filepath) {
@@ -70,4 +70,4 @@ module.exports = function (grunt) {
   });
 
 
-}
+};
