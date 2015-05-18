@@ -40,22 +40,30 @@ module.exports = function (grunt) {
           return true;
         }
       }).map(function (filepath) {
-        return createComponent(filepath, options.type);
+        return createComponent(filepath, options.type, f.dest);
       }).map(function (o) {
-        var destPath = path.join(f.dest, o.name);
-        grunt.file.write(destPath, o.component);
-        grunt.log.writeln('File ' + destPath + ' created.');
+        grunt.file.write(o.destination, o.component);
+        grunt.log.writeln('File ' + o.destination + ' created.');
       });
 
     });
 
-    function createComponent (filepath, type) {
+    function createComponent (filepath, type, explicitDestination) {
       var builder = builders[type];
       if(typeof builder === 'undefined' || !builder){
         grunt.fatal('Type \''+type+'\' is not recognised, should be either of \'amd\', \'cjs\' or \'es6\'.', 2);
       }
+
+      var dest = '';
+
+      if (detectDestType(filepath) === 'directory') {
+        dest = makeComponentName(filepath);
+      } else {
+        dest = explicitDestination;
+      }
+
       return {
-        name: makeComponentName(filepath),
+        destination: dest,
         component: builder(rcu.parse(grunt.file.read(filepath)))
       };
     }
@@ -65,6 +73,14 @@ module.exports = function (grunt) {
       .replace('.html', '')
       .replace(/\s/g, '_') + '.js';
     }
+
+    function detectDestType (dest) {
+      if (grunt.util._.endsWith(dest, '/')) {
+        return 'directory';
+      } else {
+        return 'file';
+      }
+    };
 
 
   });
