@@ -1,3 +1,12 @@
+/*
+ * grunt-ractive
+ * https://github.com/ekhaled/grunt-ractive
+ *
+ * Copyright (c) 2015 ekhaled, contributors
+ * Licensed under the MIT license.
+ * https://github.com/ekhaled/grunt-ractive/blob/master/LICENSE
+ */
+
 'use strict';
 module.exports = function (grunt) {
 
