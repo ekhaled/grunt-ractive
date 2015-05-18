@@ -24,12 +24,28 @@ module.exports = function(grunt){
     },
 
     ractive:{
-      main:{
+      es6:{
+        options:{
+          type: 'es6'
+        },
+        files:{
+          'test/dest/clock_es6.js': 'test/src/clock.html'
+        }
+      },
+      amd:{
+        options:{
+          type: 'amd'
+        },
+        files:{
+          'test/dest/clock_amd.js': 'test/src/clock.html'
+        }
+      },
+      cjs:{
         options:{
           type: 'cjs'
         },
         files:{
-          'test/dest/': 'test/src/*'
+          'test/dest/clock_cjs.js': 'test/src/clock.html'
         }
       }
     },
@@ -39,9 +55,15 @@ module.exports = function(grunt){
       tests: ['test/*_test.js'],
     },
 
+    clean: {
+      tests: ['test/dest/*'],
+    }
+
   });
 
-  grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('test', ['clean', 'ractive', 'nodeunit']);
+
+  grunt.registerTask('default', ['jshint', 'test']);
 
 
 };
