@@ -11,3 +11,4 @@ Icon
 *.ipr
 *.iws
 .idea/
+test/dest/*
