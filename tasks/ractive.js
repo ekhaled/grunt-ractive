@@ -56,8 +56,8 @@ module.exports = function (grunt) {
 
       var dest = '';
 
-      if (detectDestType(filepath) === 'directory') {
-        dest = makeComponentName(filepath);
+      if (detectDestType(explicitDestination) === 'directory') {
+        dest = path.join(explicitDestination, makeComponentName(filepath));
       } else {
         dest = explicitDestination;
       }
