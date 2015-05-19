@@ -53,5 +53,38 @@ exports.injector = {
     test.equal(actual, expected, 'ES6 modules should match expected results');
 
     test.done();
+  },
+  filenames: function(test) {
+    test.expect(4);
+    test.equal(
+      grunt.file.exists('test/dest/tmp1/clock.js'),
+      true,
+      'A file has been created with the expected file name.'
+    );
+    test.equal(
+      grunt.file.read('test/dest/tmp1/clock.js'),
+      grunt.file.read('test/expected/clock_cjs.js'),
+      'Derived file name contains the expected content.'
+    );
+    test.equal(
+      grunt.file.exists('test/dest/tmp1/clock_in_ract.js'),
+      true,
+      'A file has been created with the expected file name.'
+    );
+    test.equal(
+      grunt.file.read('test/dest/tmp1/clock_in_ract.js'),
+      grunt.file.read('test/expected/clock_cjs.js'),
+      'Derived file name contains the expected content.'
+    );
+    test.done();
+  },
+  defs: function(test) {
+    test.expect(1);
+    test.equal(
+      grunt.file.read('test/dest/tmp2/clock.js'),
+      grunt.file.read('test/expected/clock_amd.js'),
+      'By default AMD modules are created'
+    );
+    test.done();
   }
 };

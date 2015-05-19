@@ -47,6 +47,19 @@ module.exports = function(grunt){
         files:{
           'test/dest/clock_cjs.js': 'test/src/clock.html'
         }
+      },
+      names:{
+        options:{
+          type: 'cjs'
+        },
+        files:{
+          'test/dest/tmp1/': 'test/src/*'
+        }
+      },
+      defs:{
+        files:{
+          'test/dest/tmp2/': 'test/src/*'
+        }
       }
     },
 
