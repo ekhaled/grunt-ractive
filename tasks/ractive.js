@@ -70,7 +70,7 @@ module.exports = function (grunt) {
 
     function makeComponentName (filepath) {
       return filepath.split(path.sep).pop()
-      .replace('.html', '')
+      .replace(/\.html|\.ract/, '')
       .replace(/\s/g, '_') + '.js';
     }
 
