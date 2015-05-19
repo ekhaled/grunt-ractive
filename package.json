@@ -1,7 +1,7 @@
 {
   "name": "grunt-ractive",
   "description": "Compile Ractive components with Grunt",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/ekhaled/grunt-ractive",
   "author": {
     "name": "ekhaled",
@@ -49,7 +49,7 @@
   ],
   "readme": "",
   "readmeFilename": "README.md",
-  "_id": "grunt-ractive@0.0.1",
+  "_id": "grunt-ractive@0.1.0",
   "_shasum": "",
   "_resolved": "git://github.com/ekhaled/grunt-ractive#",
   "_from": "grunt-ractive@git://github.com/ekhaled/grunt-ractive"
